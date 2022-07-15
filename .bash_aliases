@@ -31,3 +31,6 @@ idf-monitor-and-log() {
     fi
     idf-monitor 2>&1 | tee -a $log_file
 }
+
+# docker
+alias dc=docker-compose
