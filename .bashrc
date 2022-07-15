@@ -132,21 +132,21 @@ export PATH=$PATH:$HOME/.cargo/bin
 if [ -n "$SOURCE_IDF" ]; then
     idf-setup
 else
-    # otherwise print a charming message
+    # otherwise print a message
     if [ -f /var/run/reboot-required ]; then
         msg='Some updates require a reboot.'
-    elif [ -x "$(command -v fortune)" ]; then
+        elif [ -x "$(command -v fortune)" ]; then
         msg=$(fortune)
     else
         # if fortune is not installed, just print a default message
         msg='Keep on truckin!'
     fi
-
+    
     # if cowsay is installed, print a message with a cow
     if [ -x "$(command -v cowsay)" ]; then
         export COW=$(ls /usr/share/cowsay/cows/ | shuf -n1)
         msg="$(cowsay -f $COW "$msg")"
     fi
-
+    
     echo -e "$msg"
 fi
