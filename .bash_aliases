@@ -25,6 +25,10 @@ idf-monitor-and-log() {
 # docker
 alias dc=docker-compose
 
+# git
+alias git-exclude="git update-index --assume-unchanged"
+alias git-include="git update-index --no-assume-unchanged"
+
 # if .bash_aliases_work is not empty, source it
 if [ -f ~/.bash_aliases_work ]; then
     source ~/.bash_aliases_work
