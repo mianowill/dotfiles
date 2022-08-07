@@ -144,7 +144,16 @@ else
     
     # if cowsay is installed, print a message with a cow
     if [ -x "$(command -v cowsay)" ]; then
-        export COW=$(ls /usr/share/cowsay/cows/ | shuf -n1)
+        # cowfiles are either in /usr/share/cowsay/cows/ or /usr/share/cows/
+        if [ -d /usr/share/cowsay/cows ]; then
+            cowfiles=/usr/share/cowsay/cows
+            elif [ -d /usr/share/cows/ ]; then
+            cowfiles=/usr/share/cows/
+        else
+            # if no cows are installed, just print a default message
+            msg='Keep on truckin!'
+        fi
+        export COW=$(ls $cowfiles | shuf -n1)
         msg="$(cowsay -f $COW "$msg")"
     fi
     
