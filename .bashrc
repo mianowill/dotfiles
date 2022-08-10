@@ -134,7 +134,8 @@ if [ -n "$SOURCE_IDF" ]; then
 else
     # otherwise print a message
     if [ -f /var/run/reboot-required ]; then
-        msg='Some updates require a reboot.'
+        msg='The following packages require a reboot to take effect:'
+        msg="$msg $(cat /var/run/reboot-required.pkgs)"
         elif [ -x "$(command -v fortune)" ]; then
         msg=$(fortune)
     else
