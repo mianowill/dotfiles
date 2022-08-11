@@ -116,6 +116,12 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# assuming powerline is installed with python -m pip install powerline-status, we can source it
+powerline_loc=$(python -m site --user-site)/powerline/bindings/bash/powerline.sh
+if [ -f $powerline_loc ]; then
+    source $powerline_loc
+fi
+
 # fuck
 if [ -x "$(command -v thefuck)" ]; then
     eval "$(thefuck --alias)"
