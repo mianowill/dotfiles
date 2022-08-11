@@ -118,7 +118,9 @@ fi
 
 # assuming powerline is installed with python -m pip install powerline-status, we can source it
 powerline_loc=$(python -m site --user-site)/powerline/bindings/bash/powerline.sh
-if [ -f $powerline_loc ]; then
+
+# don't source if NO_POWERLINE is set
+if [ -z "$NO_POWERLINE" ] && [ -f "$powerline_loc" ]; then
     $HOME/.local/bin/powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
