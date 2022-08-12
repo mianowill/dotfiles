@@ -5,16 +5,21 @@
                 "function": "powerline.segments.shell.mode"
             },
             {
-                "function": "powerline.segments.common.wthr.weather",
-                "priority": 20
-            },
-            {
                 "function": "powerline.segments.common.net.hostname",
                 "priority": 10
             },
             {
                 "function": "powerline.segments.common.env.user",
                 "priority": 30
+            },
+            {
+                "function": "powerline_owmweather.weather",
+                "priority": 10,
+                "args": {
+                    "openweathermap_api_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                    "show": "temp,condition",
+                    "pre_temp": ""
+                }
             },
             {
                 "function": "powerline.segments.common.env.virtualenv",

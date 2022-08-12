@@ -1,6 +1,7 @@
 {
     "ext": {
         "shell": {
+            "theme": "solarized",
             "colorscheme": "solarized"
         }
     }

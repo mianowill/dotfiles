@@ -1,5 +1,5 @@
 {
-    "name": "Default",
+    "name": "Solarised",
     "groups": {
         "gitstatus": {
             "fg": "gray9",
@@ -70,6 +70,13 @@
             "fg": "gray9",
             "bg": "solarized:base02",
             "attrs": []
+        },
+        "owmweather": {
+            "fg": "solarized:base3",
+            "bg": "solarized:green",
+            "attrs": [
+                "bold"
+            ]
         }
     }
 }
