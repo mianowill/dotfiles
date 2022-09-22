@@ -13,15 +13,6 @@
                 "priority": 30
             },
             {
-                "function": "powerline_owmweather.weather",
-                "priority": 10,
-                "args": {
-                    "openweathermap_api_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                    "show": "temp,condition",
-                    "pre_temp": ""
-                }
-            },
-            {
                 "function": "powerline.segments.common.env.virtualenv",
                 "priority": 50
             },
@@ -35,7 +26,13 @@
             },
             {
                 "function": "powerline_gitstatus.gitstatus",
-                "priority": 40
+                "priority": 40,
+                "args": {
+                    "formats": {
+                        "untracked": "",
+                        "stashed": " ❯ {}"
+                    }
+                }
             }
         ],
         "right": [
