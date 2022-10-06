@@ -29,6 +29,9 @@ alias dc=docker-compose
 alias git-exclude="git update-index --assume-unchanged"
 alias git-include="git update-index --no-assume-unchanged"
 
+# ubuntu
+alias ubuntu-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y && sudo snap refresh"
+
 # if .bash_aliases_work is not empty, source it
 if [ -f ~/.bash_aliases_work ]; then
     source ~/.bash_aliases_work
