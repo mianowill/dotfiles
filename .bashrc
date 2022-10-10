@@ -116,11 +116,22 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# gopath for google drive
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# cargo path
+export PATH=$PATH:$HOME/.cargo/bin
+
+# local bin
+export PATH=$PATH:$HOME/.local/bin
+
 # assuming powerline is installed with python -m pip install powerline-status, we can source it
 powerline_loc=$(python -m site --user-site)/powerline/bindings/bash/powerline.sh
 
 # don't source if NO_POWERLINE is set
 if [ -z "$NO_POWERLINE" ] && [ -f "$powerline_loc" ]; then
+    echo $powerline_loc
     $HOME/.local/bin/powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
@@ -132,12 +143,6 @@ if [ -x "$(command -v thefuck)" ]; then
     eval "$(thefuck --alias)"
 fi
 
-# gopath for google drive
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# cargo path
-export PATH=$PATH:$HOME/.cargo/bin
 
 # if SOURCE_IDF is set, run the ESP IDF setup script
 if [ -n "$SOURCE_IDF" ]; then
@@ -160,11 +165,9 @@ else
         if [ -d /usr/share/cowsay/cows ]; then
             cowfiles=/usr/share/cowsay/cows
             elif [ -d /usr/share/cows/ ]; then
-            cowfiles=/usr/share/cows/
-        else
-            # if no cows are installed, just print a default message
-            msg='Keep on truckin!'
+            cowfiles=/usr/share/cows
         fi
+        
         export COW=$(ls $cowfiles | shuf -n1)
         msg="$(cowsay -f $COW "$msg")"
     fi
