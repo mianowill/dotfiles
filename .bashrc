@@ -156,7 +156,7 @@ else
         msg=$(fortune)
     else
         # if fortune is not installed, just print a default message
-        msg='Keep on truckin!'
+        msg='System is up to date.'
     fi
     
     # if cowsay is installed, print a message with a cow
@@ -172,5 +172,11 @@ else
         msg="$(cowsay -f $COW "$msg")"
     fi
     
-    echo -e "$msg"
+    
+    # 1 in 3 chance of printing the weather instead
+    if [ $(( $RANDOM % 3 )) -eq 0 ]; then
+        curl wttr.in/?1QF &
+    else
+        echo -e "$msg"
+    fi
 fi
