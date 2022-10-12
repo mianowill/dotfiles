@@ -131,7 +131,6 @@ powerline_loc=$(python -m site --user-site)/powerline/bindings/bash/powerline.sh
 
 # don't source if NO_POWERLINE is set
 if [ -z "$NO_POWERLINE" ] && [ -f "$powerline_loc" ]; then
-    echo $powerline_loc
     $HOME/.local/bin/powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
@@ -175,7 +174,7 @@ else
     
     # 1 in 3 chance of printing the weather instead
     if [ $(( $RANDOM % 3 )) -eq 0 ]; then
-        curl wttr.in/?1QF &
+        curl wttr.in/?1QF & # 1 day forecast, quiet, no 'follow' message at the bottom
     else
         echo -e "$msg"
     fi
