@@ -170,12 +170,4 @@ else
         export COW=$(ls $cowfiles | shuf -n1)
         msg="$(cowsay -f $COW "$msg")"
     fi
-    
-    
-    # 1 in 3 chance of printing the weather instead
-    if [ $(( $RANDOM % 3 )) -eq 0 ]; then
-        curl wttr.in/?1QF & # 1 day forecast, quiet, no 'follow' message at the bottom
-    else
-        echo -e "$msg"
-    fi
 fi
