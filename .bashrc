@@ -170,4 +170,5 @@ else
         export COW=$(ls $cowfiles | shuf -n1)
         msg="$(cowsay -f $COW "$msg")"
     fi
+    echo -e "$msg"
 fi
