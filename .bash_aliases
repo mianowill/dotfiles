@@ -32,8 +32,11 @@ alias git-include="git update-index --no-assume-unchanged"
 # ubuntu
 alias ubuntu-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y && sudo snap refresh"
 
-# clipboard
+# clipboard (usage: echo "hello world" | clip)
 alias clip="xclip -selection c"
+
+# exa
+alias lls="exa --icons --group-directories-first"
 
 # if .bash_aliases_work is not empty, source it
 if [ -f ~/.bash_aliases_work ]; then
