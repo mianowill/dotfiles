@@ -77,6 +77,13 @@
             "attrs": [
                 "bold"
             ]
+        },
+        "date": {
+            "fg": "gray9",
+            "bg": "solarized:base02",
+            "attrs": [
+                "bold"
+            ]
         }
     }
 }
