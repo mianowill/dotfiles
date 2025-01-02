@@ -1,0 +1,7 @@
+font-family = CaskaydiaCove Nerd Font Mono
+font-family-bold = CaskaydiaCove NFM Bold
+font-family-bold-italic = CaskaydiaCove NFM Bold Italic
+font-family-italic = CaskaydiaCove NFM Italic
+font-feature = -calt
+
+mouse-scroll-multiplier = 2.0
