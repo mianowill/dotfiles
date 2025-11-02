@@ -16,8 +16,8 @@ autoload -U compinit && compinit
 export PATH="$PATH:/Users/mia/.local/bin"
 alias python="python3"
 alias lls="eza --icons --group-directories-first"
-alias rg="rg --smart-case --hyperlink-format=vscode"
-alias gmake="gmake -j8 -Oline -s"
+alias rg="rg --smart-case"
+alias gmake="gmake -j8 -Orecurse -s"
 alias vim=nvim
 alias git-exclude="git update-index --assume-unchanged"
 alias git-include="git update-index --no-assume-unchanged"
