@@ -62,3 +62,13 @@ elif [ -x "$(command -v fortune)" ] && [ -x "$(command -v cowsay)" ]; then
 	export COW=$(ls /opt/homebrew/share/cowsay/cows | shuf -n 1)
 	cowsay -f $COW $(fortune)
 fi
+
+function aladark() {
+  sed 's/light.toml/dark.toml/' ~/.config/alacritty/alacritty.toml > /tmp/alacritty.toml
+  mv /tmp/alacritty.toml ~/.config/alacritty/alacritty.toml
+}
+
+function alalight() {
+  sed 's/dark.toml/light.toml/' ~/.config/alacritty/alacritty.toml > /tmp/alacritty.toml
+  mv /tmp/alacritty.toml ~/.config/alacritty/alacritty.toml
+}
