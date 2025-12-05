@@ -4,3 +4,5 @@
 vim.g.snacks_animate = false
 vim.opt.clipboard = ""
 vim.g.ai_cmp = false
+vim.g.autoformat = false
+vim.o.autochdir = false

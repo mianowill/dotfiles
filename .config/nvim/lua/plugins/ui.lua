@@ -13,10 +13,16 @@ return {
     opts = {},
   },
   {
+    "Shatur/neovim-ayu",
+  },
+  {
     "snacks.nvim",
     opts = {
+      picker = {
+        matcher = { frecency = true },
+      },
       explorer = {
-        replace_netrw = false,
+        -- replace_netrw = false,
       },
       dashboard = {
         preset = {
