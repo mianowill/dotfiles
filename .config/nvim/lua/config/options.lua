@@ -12,5 +12,3 @@ vim.opt.softtabstop = 0
 vim.opt.tabstop = 3
 vim.opt.expandtab = true
 vim.opt.smarttab = true
-
-vim.opt.formatoptions:remove({"r", "o"}) -- don't continue comments on new line
