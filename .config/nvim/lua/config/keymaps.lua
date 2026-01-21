@@ -3,3 +3,4 @@
 -- Add any additional keymaps here
 vim.keymap.set('c', '<C-A>', '<C-B>', { noremap = true })
 vim.keymap.set('c', '<C-Down>', '<Nop>', { noremap = true })
+vim.keymap.set({"n", "v"}, "Y", [["+y]], { desc = "Yank to system clipboard" })

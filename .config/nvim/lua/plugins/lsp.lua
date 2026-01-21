@@ -11,4 +11,24 @@ return {
       },
     },
   },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      kind_filter = {
+        c = {
+          -- "Class",
+          -- "Constructor",
+          -- "Field",
+          "Function",
+          -- "Interface",
+          -- "Method",
+          -- "Module",
+          -- "Namespace",
+          -- "Package",
+          -- "Property",
+          -- "Trait",
+        },
+      },
+    },
+  },
 }
