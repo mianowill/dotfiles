@@ -68,7 +68,9 @@ return {
       modes = {
         search = {
           enabled = true,
-          -- trigger = ";",
+        },
+        char = {
+          enabled = false,
         },
       },
     },
