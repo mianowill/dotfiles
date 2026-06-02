@@ -1,6 +1,5 @@
-
 [font]
-size = 12.0
+size = 12
 
 [font.bold]
 family = "CaskaydiaCove Nerd Font"
@@ -19,13 +18,12 @@ family = "CaskaydiaCove Nerd Font"
 style = "Regular"
 
 [scrolling]
-history = 100000
+history = 100_000
+
+[window]
+option_as_alt = "OnlyRight" # Use right option key as alt, left option key as meta (for #€é etc.) [set to "Both" to use both as alt]
 
 [general]
-import = ["/Users/mia/.config/alacritty/themes/themes/solarized_dark.toml"]
-
-# make file paths clickable
-#[[hints.enabled]]
-#regex = "
-#command = { program = "code", args = [ "--goto" ] }
-#mouse = { enabled = true }
+import = [
+  "/Users/mia/.config/alacritty/dark.toml"
+]
