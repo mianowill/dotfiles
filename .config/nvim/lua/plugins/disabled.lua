@@ -5,4 +5,5 @@ return {
   { "windwp/nvim-ts-autotag", enabled = false },
   { "folke/ts-comments.nvim", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
+  { "MagicDuck/grug-far.nvim", enabled = false },
 }

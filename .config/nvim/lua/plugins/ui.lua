@@ -3,7 +3,7 @@ return {
     "0xferrous/ansi.nvim",
     config = function()
       require("ansi").setup({
-        auto_enable = false, -- Auto-enable for configured filetypes
+        auto_enable = true, -- Auto-enable for configured filetypes
         filetypes = { "log", "ansi", "devlog" }, -- Filetypes to auto-enable
       })
     end,
@@ -20,6 +20,9 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
   },
+  -- {
+  --   "sindrets/diffview.nvim",
+  -- },
   {
     "lewis6991/gitsigns.nvim",
     opts = {
@@ -65,6 +68,9 @@ return {
   {
     "folke/flash.nvim",
     opts = {
+      search = {
+        -- trigger = "\\",
+      },
       modes = {
         search = {
           enabled = true,
@@ -76,14 +82,47 @@ return {
     },
   },
   {
+    "folke/todo-comments.nvim",
+    opts = {
+      keywords = {
+        NOTE = { icon = " ", color = "hint", alt = { "INFO", "*" } },
+      },
+    },
+  },
+  {
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+  },
+  {
     "snacks.nvim",
     opts = {
       picker = {
         matcher = { frecency = true },
-        explorer = {
-          -- replace_netrw = false,
-          hidden = true,
+        sources = {
+          files = {
+            hidden = true,
+            ignored = false,
+          },
+          grep = {
+            hidden = true,
+            ignored = false,
+          },
+          explorer = {
+            hidden = true,
+            ignored = false,
+          },
         },
+      },
+      explorer = {
+        enabled = false,
+        -- replace_netrw = false,
       },
       dashboard = {
         preset = {
@@ -127,8 +166,13 @@ return {
           },
           { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
           { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          { icon = "⌨ ", key = "i", desc = "New File", action = ":ene | startinsert" },
         },
       },
+    },
+    keys = {
+      { "<leader><space>", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+      { "<leader>/", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
     },
   },
 }
