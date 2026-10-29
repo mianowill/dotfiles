@@ -9,10 +9,6 @@ return {
     end,
   },
   {
-    "f-person/auto-dark-mode.nvim",
-    opts = {},
-  },
-  {
     "Shatur/neovim-ayu",
   },
   {
@@ -20,9 +16,6 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
   },
-  -- {
-  --   "sindrets/diffview.nvim",
-  -- },
   {
     "lewis6991/gitsigns.nvim",
     opts = {
@@ -93,12 +86,30 @@ return {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
+    opts = {
+      columns = {
+        "icon",
+        "size",
+        "mtime",
+      },
+    },
     -- Optional dependencies
     dependencies = { { "nvim-mini/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
+  },
+  {
+    "jpalardy/vim-slime",
+    init = function()
+      vim.g.slime_target = "tmux"
+      -- Target the last active tmux pane automatically
+      vim.g.slime_default_config = {
+        socket_name = "default",
+        target_pane = "{last}",
+      }
+      vim.g.slime_dont_ask_default = 1
+    end,
   },
   {
     "snacks.nvim",
