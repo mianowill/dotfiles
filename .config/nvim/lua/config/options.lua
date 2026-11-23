@@ -9,7 +9,7 @@ vim.o.autochdir = false
 
 vim.opt.shiftwidth = 0
 vim.opt.softtabstop = 0
-vim.opt.tabstop = 3
+vim.opt.tabstop = 4
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 
