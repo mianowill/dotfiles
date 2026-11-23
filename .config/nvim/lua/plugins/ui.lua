@@ -1,3 +1,73 @@
+local function fortune_section(opts)
+  opts = opts or {}
+  local width = opts.width or 60
+  local justify = opts.justify or false -- set to true for full-justified block
+
+
+  -- Use { "fortune", "-s", "-n", "160", "zippy" } if you want to cap total quote length
+  local raw = vim.fn.system({ "fortune", "zippy" })
+  if vim.v.shell_error ~= 0 or not raw or raw == "" then
+    return {}
+  end
+
+  -- Collapse fortune's pre-existing line breaks/extra whitespace so we can re-wrap cleanly
+  local text = raw:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+
+  -- Word-wrap without breaking words
+  local lines = {}
+  local current = ""
+  for word in text:gmatch("%S+") do
+    if current == "" then
+      current = word
+
+    elseif vim.fn.strdisplaywidth(current) + 1 + vim.fn.strdisplaywidth(word) <= width then
+      current = current .. " " .. word
+    else
+      table.insert(lines, current)
+      current = word
+    end
+  end
+  if current ~= "" then
+    table.insert(lines, current)
+  end
+
+  -- Optional: full-justify all lines except the last, inside a centered block
+  if justify and #lines > 1 then
+    for i = 1, #lines - 1 do
+      local words = vim.split(lines[i], " ", { plain = true })
+      if #words > 1 then
+        local gaps = #words - 1
+        local spaces_needed = width - vim.fn.strdisplaywidth(lines[i]) + gaps
+        local base = math.floor(spaces_needed / gaps)
+        local extra = spaces_needed % gaps
+        local parts = {}
+        for j, w in ipairs(words) do
+          table.insert(parts, w)
+          if j <= gaps then
+            table.insert(parts, string.rep(" ", base + (j <= extra and 1 or 0)))
+
+          end
+        end
+        lines[i] = table.concat(parts)
+      end
+    end
+    -- Right-pad the last line to `width` so it aligns with the left edge of the justified block
+    -- (remove this line if you prefer the last line to be centered instead)
+    local pad = math.max(0, width - vim.fn.strdisplaywidth(lines[#lines]))
+    lines[#lines] = lines[#lines] .. string.rep(" ", pad)
+  end
+
+  local items = {}
+  for i, line in ipairs(lines) do
+    table.insert(items, {
+      text = { { line, hl = "SnacksDashboardDesc" } }, -- or "Comment"
+      align = "center",
+      padding = (i == #lines) and 1 or 0,
+    })
+  end
+  return items
+end
+
 return {
   {
     "0xferrous/ansi.nvim",
@@ -8,6 +78,10 @@ return {
       })
     end,
   },
+  -- {
+  --   "f-person/auto-dark-mode.nvim",
+  --   opts = {},
+  -- },
   {
     "Shatur/neovim-ayu",
   },
@@ -168,13 +242,16 @@ return {
         },
         sections = {
           { section = "header" },
-          {
-            section = "terminal",
-            cmd = "fortune -n 60 zippy | while IFS= read -r line; do printf '%*s\n' $(( (60 + ${#line}) / 2 )) \"$line\"; done",
-            ttl = 30,
-            width = 60,
-            height = 3,
-          },
+          -- {
+          --   section = "terminal",
+          --   cmd = "fortune -n 60 zippy | while IFS= read -r line; do printf '%*s\n' $(( (60 + ${#line}) / 2 )) \"$line\"; done",
+          --   ttl = 30,
+          --   width = 60,
+          --   height = 3,
+          -- },
+          function()
+            return fortune_section({ width = 60, justify = true })
+          end,
           { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
           { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
           { icon = "⌨ ", key = "i", desc = "New File", action = ":ene | startinsert" },
